@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "30364630124",
+    "project_id": "note-box-a9e4c",
+    "storage_bucket": "note-box-a9e4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30364630124:android:165d3c492d8fe85fafec49",
+        "android_client_info": {
+          "package_name": "com.example.note_nexus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa5K0Z1M_Zt8bu3bk7C2Zmh5mMu9um2Rk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
