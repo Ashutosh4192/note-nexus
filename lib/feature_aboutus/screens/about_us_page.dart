@@ -118,17 +118,15 @@ class AboutUsPage extends StatelessWidget {
                 imageadd: AppAssets.vivek,
                 name: "Vivek Kumar",
                 designation: "GS Technical Board",
-                github: "https://github.com/DarkNinja15",
-                linkedIn:
-                    "https://www.linkedin.com/in/animesh-shukla-356934231/",
+                github: "https://github.com/",
+                linkedIn: "https://www.linkedin.com/in/vivek-kumar13/",
               ),
               ProfileWidget(
                 imageadd: AppAssets.shreyash,
                 name: "Shreyash Kumar",
                 designation: "DevC Lead",
                 github: "https://github.com/shreyashkr17",
-                linkedIn:
-                    "https://www.linkedin.com/in/animesh-shukla-356934231/",
+                linkedIn: "https://www.linkedin.com/in/shreyash-kr/",
               ),
               ProfileWidget(
                 imageadd: AppAssets.animesh,

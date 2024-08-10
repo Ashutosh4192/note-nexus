@@ -6,8 +6,8 @@ class AppAssets {
   static const String sheet = "assets/images/sheet.png";
 
   // images
-  static const String vivek = "assets/images/person1.jpg";
-  static const String shreyash = "assets/images/person1.jpg";
+  static const String vivek = "assets/images/vivek_kumar.jpeg";
+  static const String shreyash = "assets/images/shreyash_kumar.jpeg";
   static const String animesh = "assets/images/animesh_shukla.jpeg";
   static const String ashutoshM = "assets/images/ashutosh_mishra.jpg";
   static const String ashutoshC = "assets/images/ashutosh_chaturvedi.jpg";

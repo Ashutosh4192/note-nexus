@@ -22,6 +22,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -158,6 +159,9 @@ class _LoginPageState extends State<LoginPage> {
               CustomButton(
                 text: "Login",
                 voidCallback: () async {
+                  setState(() {
+                    isLoading = true;
+                  });
                   bool isSuccess = await AuthService.login(
                       emailController.text.trim(),
                       passwordController.text.trim());
@@ -168,6 +172,9 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     );
                   }
+                  setState(() {
+                    isLoading = false;
+                  });
                   emailController.text = "";
                   passwordController.text = "";
                 },

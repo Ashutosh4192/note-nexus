@@ -16,31 +16,6 @@ import 'package:note_nexus/feature_home/widgets/dropdown.dart';
 import 'package:note_nexus/feature_login/screens/login_page.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
-class HomeVariables {
-  var semester_value = "Select semester";
-  var department_value = "Select department";
-  var subject_value = "Select subject";
-  var category_value = "Select category";
-  var subject_list = [
-    "Select subject",
-    "Engineering Mathematics-I",
-    "Engineering Physics",
-    "Electrical Sciences",
-    "Computer Programming",
-    "Professional Communication",
-    "Engineering Graphics",
-  ].map((String value) {
-    return DropdownMenuItem<String>(
-      value: value,
-      child: Text(value),
-    );
-  }).toList();
-}
-
-class HomeEnableDisable {
-  var subject = false;
-}
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -50,11 +25,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   HomeController homeController = Get.find();
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -169,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                 ? LottieBuilder.asset(
                     AppAssets.homeAnimation,
                   )
-                : Container(),
+                : const SizedBox(),
             Container(
               alignment: Alignment.center,
               child: SingleChildScrollView(
