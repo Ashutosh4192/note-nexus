@@ -130,97 +130,100 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        body: ResponsiveGridList(
-          rowMainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          horizontalGridSpacing: size.width * 0.2,
-          minItemWidth: 500,
-          children: [
-            kIsWeb
-                ? LottieBuilder.asset(
-                    AppAssets.homeAnimation,
-                  )
-                : const SizedBox(),
-            Container(
-              alignment: Alignment.center,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Obx(
-                      () => CustomDropdown(
-                        items: Variables.departmentList,
-                        enabled: homeController.showBranch.value,
-                        hintText: "Department",
-                        labelText: "Select Department",
-                        dropdownitem: DROPDOWNITEMS.branch,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 11),
+          child: ResponsiveGridList(
+            rowMainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            horizontalGridSpacing: size.width * 0.2,
+            minItemWidth: MediaQuery.of(context).size.width<600? 300: 500,
+            children: [
+              kIsWeb
+                  ? LottieBuilder.asset(
+                      AppAssets.homeAnimation,
+                    )
+                  : const SizedBox(),
+              Container(
+                alignment: Alignment.center,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    Obx(
-                      () => CustomDropdown(
-                        items: Variables.semesterList,
-                        enabled: homeController.showSemester.value,
-                        hintText: "Semester",
-                        labelText: "Select Semester",
-                        dropdownitem: DROPDOWNITEMS.semester,
+                      Obx(
+                        () => CustomDropdown(
+                          items: Variables.departmentList,
+                          enabled: homeController.showBranch.value,
+                          hintText: "Department",
+                          labelText: "Select Department",
+                          dropdownitem: DROPDOWNITEMS.branch,
+                        ),
                       ),
-                    ),
-                    Obx(
-                      () => CustomDropdown(
-                        items:
-                            Variables.subjectList[homeController.key!.value] ??
-                                [],
-                        enabled: homeController.showSubjects.value,
-                        hintText: "Subject",
-                        labelText: "Select Subject",
-                        dropdownitem: DROPDOWNITEMS.subject,
+                      Obx(
+                        () => CustomDropdown(
+                          items: Variables.semesterList,
+                          enabled: homeController.showSemester.value,
+                          hintText: "Semester",
+                          labelText: "Select Semester",
+                          dropdownitem: DROPDOWNITEMS.semester,
+                        ),
                       ),
-                    ),
-                    CustomDropdown(
-                      items: Variables.categoryList,
-                      enabled: true,
-                      hintText: "Category",
-                      labelText: "Select Category",
-                      dropdownitem: DROPDOWNITEMS.type,
-                    ),
-                    Custombutton(
-                      voidCallback: () {
-                        if (homeController.branch == null ||
-                            homeController.semester == null ||
-                            homeController.subject == null ||
-                            homeController.type == null) {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return CustomAlert(
-                                    text:
-                                        "Please select all the fields to proceed",
-                                    voidCallback: () {
-                                      navigator!.pop(context);
-                                    });
-                              });
-                          return;
-                        } else {
-                          navigator!.push(
-                            MaterialPageRoute(
-                              builder: (context) => PdfPage(
-                                subject: homeController.subject!.trim(),
-                                department: homeController.branch!.trim(),
-                                semester: homeController.semester!.trim(),
-                                category: homeController.type!.trim(),
+                      Obx(
+                        () => CustomDropdown(
+                          items:
+                              Variables.subjectList[homeController.key!.value] ??
+                                  [],
+                          enabled: homeController.showSubjects.value,
+                          hintText: "Subject",
+                          labelText: "Select Subject",
+                          dropdownitem: DROPDOWNITEMS.subject,
+                        ),
+                      ),
+                      CustomDropdown(
+                        items: Variables.categoryList,
+                        enabled: true,
+                        hintText: "Category",
+                        labelText: "Select Category",
+                        dropdownitem: DROPDOWNITEMS.type,
+                      ),
+                      Custombutton(
+                        voidCallback: () {
+                          if (homeController.branch == null ||
+                              homeController.semester == null ||
+                              homeController.subject == null ||
+                              homeController.type == null) {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return CustomAlert(
+                                      text:
+                                          "Please select all the fields to proceed",
+                                      voidCallback: () {
+                                        navigator!.pop(context);
+                                      });
+                                });
+                            return;
+                          } else {
+                            navigator!.push(
+                              MaterialPageRoute(
+                                builder: (context) => PdfPage(
+                                  subject: homeController.subject!.trim(),
+                                  department: homeController.branch!.trim(),
+                                  semester: homeController.semester!.trim(),
+                                  category: homeController.type!.trim(),
+                                ),
                               ),
-                            ),
-                          );
-                        }
-                      },
-                      text: "Get docs!",
-                    ),
-                  ],
+                            );
+                          }
+                        },
+                        text: "Get docs!",
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
