@@ -1,3 +1,5 @@
+name: "Build & Release"
+
 on:
   pull_request:
     branches:
@@ -9,12 +11,11 @@ on:
       - master
       - develop
 
-name: "Build & Release"
-
 jobs:
   build:
     name: Build & Release
     runs-on: windows-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -23,8 +24,8 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '12'
-          
+          java-version: '11'
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -38,8 +39,17 @@ jobs:
       - name: Install Flutter dependencies
         run: flutter pub get
 
+      - name: Verify Gradle Wrapper exists
+        run: |
+          cd android
+          if [ ! -f "./gradlew" ]; then
+            gradle wrapper
+          fi
+        shell: bash
+
       - name: Build Android APK
-        run: flutter build apk --release --split-per-abi --verbose
+        run: ./android/gradlew assembleRelease --warning-mode all --verbose
+        shell: bash
 
       - name: Prepare iOS build (on macOS runner)
         if: runner.os == 'macOS'
@@ -51,6 +61,7 @@ jobs:
           ln -s ../Runner.app
           cd ..
           zip -r app.ipa Payload
+        shell: bash
 
       - name: Push to Releases
         uses: ncipollo/release-action@v1
