@@ -39,16 +39,9 @@ jobs:
       - name: Install Flutter dependencies
         run: flutter pub get
 
-      - name: Verify Gradle Wrapper exists
-        run: |
-          cd android
-          if [ ! -f "./gradlew" ]; then
-            gradle wrapper
-          fi
-        shell: bash
-
       - name: Build Android APK
-        run: ./android/gradlew assembleRelease --warning-mode all --verbose
+        run: ./gradlew assembleRelease --warning-mode all --verbose
+        working-directory: android
         shell: bash
 
       - name: Prepare iOS build (on macOS runner)
