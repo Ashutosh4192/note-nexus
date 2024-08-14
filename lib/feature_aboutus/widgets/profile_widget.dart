@@ -36,10 +36,11 @@ class ProfileWidget extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 11,vertical: 5),
-          decoration: BoxDecoration(color: Colors.teal, borderRadius: BorderRadius.circular(20)),
+          margin: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
+          decoration: BoxDecoration(
+              color: Colors.teal, borderRadius: BorderRadius.circular(20)),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 11,vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
             child: Text(
               designation,
               style: const TextStyle(

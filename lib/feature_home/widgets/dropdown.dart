@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:note_nexus/common/variables.dart';
 import 'package:note_nexus/feature_home/controller/home_controller.dart';
-import 'package:animated_custom_dropdown/custom_dropdown.dart';
 
 class CustomDropdown extends StatefulWidget {
   const CustomDropdown({
@@ -68,12 +67,12 @@ class _CustomDropdownState extends State<CustomDropdown> {
   }
 }
 
-const List<String> _list = [
-  'Developer',
-  'Designer',
-  'Consultant',
-  'Student',
-];
+// const List<String> _list = [
+//   'Developer',
+//   'Designer',
+//   'Consultant',
+//   'Student',
+// ];
 
 
 //

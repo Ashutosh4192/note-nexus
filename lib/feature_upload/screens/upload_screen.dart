@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:note_nexus/common/variables.dart';
-import 'package:note_nexus/feature_home/screens/home_page.dart';
 import 'package:note_nexus/feature_upload/services/firestore_service.dart';
 import 'package:note_nexus/feature_upload/widgets/dropdown.dart';
 import 'package:note_nexus/feature_login/widgets/custom_button.dart';

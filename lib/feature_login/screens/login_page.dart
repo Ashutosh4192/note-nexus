@@ -156,29 +156,33 @@ class _LoginPageState extends State<LoginPage> {
                 toHide: true,
               ),
               const SizedBox(height: 30),
-              CustomButton(
-                text: "Login",
-                voidCallback: () async {
-                  setState(() {
-                    isLoading = true;
-                  });
-                  bool isSuccess = await AuthService.login(
-                      emailController.text.trim(),
-                      passwordController.text.trim());
-                  if (isSuccess && context.mounted) {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const UploadScreen(),
-                      ),
-                    );
-                  }
-                  setState(() {
-                    isLoading = false;
-                  });
-                  emailController.text = "";
-                  passwordController.text = "";
-                },
-              ),
+              isLoading
+                  ? const CircularProgressIndicator(
+                      color: Colors.teal,
+                    )
+                  : CustomButton(
+                      text: "Login",
+                      voidCallback: () async {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        bool isSuccess = await AuthService.login(
+                            emailController.text.trim(),
+                            passwordController.text.trim());
+                        if (isSuccess && context.mounted) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const UploadScreen(),
+                            ),
+                          );
+                        }
+                        setState(() {
+                          isLoading = false;
+                        });
+                        emailController.text = "";
+                        passwordController.text = "";
+                      },
+                    ),
             ],
           ),
         ],
