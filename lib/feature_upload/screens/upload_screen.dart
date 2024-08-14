@@ -57,116 +57,6 @@ class _UploadScreenState extends State<UploadScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: kIsWeb
-          ? Container(
-              height: 70,
-              decoration: const BoxDecoration(
-                color: Colors.teal,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        "NoteNexus",
-                        style: GoogleFonts.audiowide(
-                          textStyle: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(children: [
-                    InkWell(
-                        child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.home,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              "Home",
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                        onTap: () {
-                          navigator!.pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => const HomePage(),
-                            ),
-                          );
-                        }),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.upload_file_sharp,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              "Upload",
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ]),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        navigator!.push(MaterialPageRoute(
-                            builder: (context) => const HomePage()));
-                      },
-                      child: const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.person,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            "About Us",
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                  ]),
-                ],
-              ),
-            )
-          : Container(
-              height: 0,
-            ),
       body: SizedBox(
         height: MediaQuery.of(context).size.height * 0.8,
         child: SingleChildScrollView(
@@ -252,6 +142,11 @@ class _UploadScreenState extends State<UploadScreen> {
                     );
                     if (isSuccess) {
                       Get.snackbar("Success", "Doc uplaoded successfully");
+                      uploadController.setDefault();
+                      professorController.text = "";
+                      batchController.text = "";
+                      creditsController.text = "";
+                      pdfUrlController.text = "";
                     }
                     uploadController.setDefault();
                     professorController.text = "";

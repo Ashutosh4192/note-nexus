@@ -35,12 +35,19 @@ class ProfileWidget extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 16),
-        Text(
-          designation,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 11,vertical: 5),
+          decoration: BoxDecoration(color: Colors.teal, borderRadius: BorderRadius.circular(20)),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 11,vertical: 5),
+            child: Text(
+              designation,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
         Row(

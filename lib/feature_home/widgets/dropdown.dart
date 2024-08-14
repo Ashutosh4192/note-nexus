@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:note_nexus/common/variables.dart';
 import 'package:note_nexus/feature_home/controller/home_controller.dart';
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 
 class CustomDropdown extends StatefulWidget {
   const CustomDropdown({
@@ -66,3 +67,47 @@ class _CustomDropdownState extends State<CustomDropdown> {
     );
   }
 }
+
+const List<String> _list = [
+  'Developer',
+  'Designer',
+  'Consultant',
+  'Student',
+];
+
+
+//
+// class simpleDropDown extends StatefulWidget {
+//   const simpleDropDown({super.key,
+//     required this.items,
+//     required this.enabled,
+//     required this.hintText,
+//     required this.labelText,
+//     required this.dropdownitem,});
+//
+//   final List<DropdownMenuItem<String>> items;
+//   final String labelText;
+//   final String hintText;
+//   final bool enabled;
+//   final DROPDOWNITEMS dropdownitem;
+//
+//   @override
+//   State<simpleDropDown> createState() => _simpleDropDownState();
+// }
+//
+// class _simpleDropDownState extends State<simpleDropDown> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return  CustomDropdown(
+//       enabled: true,
+//       labelText: "hii",
+//       hintText: 'Select job role',
+//       dropdownitem: DROPDOWNITEMS[0],
+//       items: DROPDOWNITEMS,
+//       initialItem: _list[0],
+//       onChanged: (value) {
+//         log('changing value to: $value');
+//       },
+//     );
+//   }
+// }

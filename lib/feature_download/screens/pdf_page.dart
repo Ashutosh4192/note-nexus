@@ -2,12 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:note_nexus/common/app_assets/app_assets.dart';
 import 'package:note_nexus/feature_download/models/pdf.dart';
 import 'package:note_nexus/feature_download/screens/pdf_view.dart';
 import 'package:note_nexus/feature_download/services/firestore_service.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 
 class PdfPage extends StatefulWidget {
   const PdfPage(
@@ -76,10 +78,14 @@ class _PdfPageState extends State<PdfPage> {
                 child: CircularProgressIndicator(
                 color: Colors.teal,
               ))
-            : (width >= 720)
+            : pdfs.length==0?
+            Center(child: Lottie.asset(AppAssets.nopdf))
+
+                :kIsWeb
                 ? ResponsiveGridList(
-                    minItemWidth: 350,
+                    minItemWidth:330,
                     maxItemsPerRow: 3,
+
                     children: List.generate(
                       pdfs.length,
                       (index) {
@@ -96,7 +102,7 @@ class _PdfPageState extends State<PdfPage> {
                                 alignment: AlignmentDirectional.bottomEnd,
                                 children: [
                                   ListTile(
-                                    // minTileHeight: 130,
+                                    // minTileHeight: 200,
                                     hoverColor: Colors.tealAccent,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15),
@@ -105,8 +111,8 @@ class _PdfPageState extends State<PdfPage> {
                                       ),
                                     ),
                                     leading: SizedBox(
-                                      height: 50,
-                                      width: 50,
+                                      // height:MediaQuery.of(context).size.width<600?50:100,
+                                      width: kIsWeb?50:80,
                                       child: Image.asset(
                                         AppAssets.sheet,
                                         fit: BoxFit.cover,
@@ -116,10 +122,10 @@ class _PdfPageState extends State<PdfPage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
+                                        // Row(
+                                        //   mainAxisAlignment:
+                                        //       MainAxisAlignment.start,
+                                        //   children: [
                                             Text(
                                               pdfFile.department,
                                               style: const TextStyle(
@@ -127,7 +133,7 @@ class _PdfPageState extends State<PdfPage> {
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             const SizedBox(
-                                              width: 50,
+                                              height: 3,
                                             ),
                                             Text(
                                               "Semester: ${pdfFile.semester}",
@@ -135,10 +141,10 @@ class _PdfPageState extends State<PdfPage> {
                                                   fontSize: 18,
                                                   fontWeight: FontWeight.bold),
                                             ),
-                                          ],
-                                        ),
+                                        //   ],
+                                        // ),
                                         const SizedBox(
-                                          height: 5,
+                                          height: 3,
                                         ),
                                         Text(
                                           pdfFile.subject,
@@ -148,10 +154,10 @@ class _PdfPageState extends State<PdfPage> {
                                           ),
                                         ),
                                         const SizedBox(
-                                          height: 5,
+                                          height: 3,
                                         ),
-                                        Row(
-                                          children: [
+                                        // Row(
+                                        //   children: [
                                             Text(
                                               pdfFile.category,
                                               style: const TextStyle(
@@ -159,7 +165,7 @@ class _PdfPageState extends State<PdfPage> {
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             const SizedBox(
-                                              width: 50,
+                                              height: 3,
                                             ),
                                             Text(
                                               "Batch: ${pdfFile.batch}",
@@ -167,16 +173,19 @@ class _PdfPageState extends State<PdfPage> {
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w500),
                                             ),
-                                          ],
-                                        ),
+                                        //   ],
+                                        // ),
                                         const SizedBox(
-                                          height: 5,
+                                          height: 3,
                                         ),
                                         Text(
                                           "By: ${pdfFile.professor}",
                                           style: const TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.w500),
+                                        ),
+                                        const SizedBox(
+                                          height: 3,
                                         ),
                                       ],
                                     ),

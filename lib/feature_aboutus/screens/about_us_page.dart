@@ -118,7 +118,7 @@ class AboutUsPage extends StatelessWidget {
                 imageadd: AppAssets.vivek,
                 name: "Vivek Kumar",
                 designation: "GS Technical Board",
-                github: "https://github.com/",
+                github: "https://github.com/curious-vv1",
                 linkedIn: "https://www.linkedin.com/in/vivek-kumar13/",
               ),
               ProfileWidget(

@@ -4,6 +4,7 @@ class AppAssets {
   static const String loginAnimation =
       "assets/animation/Animation - 1722947827273.json";
   static const String sheet = "assets/images/sheet.png";
+  static const String nopdf="assets/animation/Animation - 1723405248196.json";
 
   // images
   static const String vivek = "assets/images/vivek_kumar.jpeg";
