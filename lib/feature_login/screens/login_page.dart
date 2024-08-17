@@ -44,16 +44,39 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.teal,
         elevation: 0.4,
         centerTitle: true,
-        title: Text(
-          "Login",
-          style: GoogleFonts.audiowide(
-            textStyle: const TextStyle(
-              fontSize: 50,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-            ),
-          ),
-        ),
+        leadingWidth: MediaQuery.of(context).size.width > 600 ? 100 : 0,
+        leading: MediaQuery.of(context).size.width > 600
+            ? Padding(
+                padding: const EdgeInsets.only(left: 21, bottom: 5),
+                // width: size.width * 0.3,
+                child: Image.asset(
+                  "assets/images/logo.png",
+                  fit: BoxFit.contain,
+                  // width: size.width * 0.3,
+                ),
+              )
+            : Container(),
+        title: MediaQuery.of(context).size.width < 500
+            ? Text(
+                "NoteNexus",
+                style: GoogleFonts.audiowide(
+                  textStyle: const TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                ),
+              )
+            : Text(
+                "NoteNexus",
+                style: GoogleFonts.audiowide(
+                  textStyle: const TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
         actions: [
           !kIsWeb
               ? Container()
@@ -81,6 +104,10 @@ class _LoginPageState extends State<LoginPage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
+            const SizedBox(
+              height: 20,
+            ),
+            Image.asset('assets/icons/ebook.png', height: 100),
             const SizedBox(
               height: 20,
             ),
