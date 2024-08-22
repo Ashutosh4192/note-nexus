@@ -39,7 +39,19 @@ class _HomePageState extends State<HomePage> {
         extendBody: true,
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          leadingWidth: MediaQuery.of(context).size.width > 600 ? 100 : 0,
+          leading: MediaQuery.of(context).size.width > 600
+              ? Padding(
+                  padding: const EdgeInsets.only(left: 21, bottom: 5),
+                    // width: size.width * 0.3,
+                    child: Image.asset(
+                      "assets/images/logo.png",
+                      fit: BoxFit.contain,
+                      // width: size.width * 0.3,
+                    ),
+                )
+              : Container(),
+          // automaticallyImplyLeading: false,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
             bottom: Radius.elliptical(size.width, 60),
@@ -48,16 +60,27 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.teal,
           elevation: 0.4,
           centerTitle: true,
-          title: Text(
-            "NoteNexus",
-            style: GoogleFonts.audiowide(
-              textStyle: const TextStyle(
-                fontSize: 50,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-              ),
-            ),
-          ),
+          title: MediaQuery.of(context).size.width < 500
+              ? Text(
+                  "NoteNexus",
+                  style: GoogleFonts.audiowide(
+                    textStyle: const TextStyle(
+                      fontSize: 35,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              : Text(
+                  "NoteNexus",
+                  style: GoogleFonts.audiowide(
+                    textStyle: const TextStyle(
+                      fontSize: 50,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
           actions: [
             !kIsWeb
                 ? Container()
@@ -85,6 +108,10 @@ class _HomePageState extends State<HomePage> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
+              const SizedBox(
+                height: 20,
+              ),
+              Image.asset('assets/icons/ebook.png', height: 100),
               const SizedBox(
                 height: 20,
               ),
@@ -135,7 +162,7 @@ class _HomePageState extends State<HomePage> {
           child: ResponsiveGridList(
             rowMainAxisAlignment: MainAxisAlignment.spaceEvenly,
             horizontalGridSpacing: size.width * 0.2,
-            minItemWidth: MediaQuery.of(context).size.width<600? 300: 500,
+            minItemWidth: MediaQuery.of(context).size.width < 600 ? 300 : 500,
             children: [
               kIsWeb
                   ? LottieBuilder.asset(
@@ -170,9 +197,9 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Obx(
                         () => CustomDropdown(
-                          items:
-                              Variables.subjectList[homeController.key!.value] ??
-                                  [],
+                          items: Variables
+                                  .subjectList[homeController.key!.value] ??
+                              [],
                           enabled: homeController.showSubjects.value,
                           hintText: "Subject",
                           labelText: "Select Subject",

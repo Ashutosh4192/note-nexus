@@ -24,6 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
           "assets/animation/Animation - 1722664313706.json",
         ),
       ),
+      animationDuration: const Duration(milliseconds: 2000),
       nextScreen: kIsWeb ? const HomePage() : const BottomNav(),
       // nextScreen: kIsWeb ? const HomePage() : const Scaffold(),
       splashIconSize: size.height * 0.6,
