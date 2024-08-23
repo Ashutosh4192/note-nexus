@@ -12,7 +12,9 @@ class UploadController extends GetxController {
   String? type;
 
   void setDefault() {
-    showSubjects.value = false;
+    showSubjects = false.obs;
+    showSemester = true.obs;
+    showBranch = true.obs;
     branch = null;
     semester = null;
     subject = null;

@@ -21,6 +21,7 @@ class _UploadScreenState extends State<UploadScreen> {
   TextEditingController professorController = TextEditingController();
   TextEditingController creditsController = TextEditingController();
   TextEditingController pdfUrlController = TextEditingController();
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -114,44 +115,48 @@ class _UploadScreenState extends State<UploadScreen> {
                 controller: pdfUrlController,
                 text: "Pdf Url",
               ),
-              CustomButton(
-                  text: "Upload",
-                  voidCallback: () async {
-                    if (uploadController.branch == null ||
-                        uploadController.semester == null ||
-                        uploadController.subject == null ||
-                        uploadController.type == null ||
-                        professorController.text.isEmpty ||
-                        batchController.text.isEmpty ||
-                        creditsController.text.isEmpty ||
-                        pdfUrlController.text.isEmpty) {
-                      Get.snackbar("Error", "Please provide all fields");
-                      return;
-                    }
-                    bool isSuccess = await FirestoreService.upload(
-                      uploadController.branch!.trim(),
-                      uploadController.semester!.trim(),
-                      uploadController.subject!.trim(),
-                      uploadController.type!.trim(),
-                      professorController.text.trim(),
-                      batchController.text.trim(),
-                      creditsController.text.trim(),
-                      pdfUrlController.text.trim(),
-                    );
-                    if (isSuccess) {
-                      Get.snackbar("Success", "Doc uplaoded successfully");
-                      uploadController.setDefault();
-                      professorController.text = "";
-                      batchController.text = "";
-                      creditsController.text = "";
-                      pdfUrlController.text = "";
-                    }
-                    uploadController.setDefault();
-                    professorController.text = "";
-                    batchController.text = "";
-                    creditsController.text = "";
-                    pdfUrlController.text = "";
-                  })
+              isLoading
+                  ? const CircularProgressIndicator()
+                  : CustomButton(
+                      text: "Upload",
+                      voidCallback: () async {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        if (uploadController.branch == null ||
+                            uploadController.semester == null ||
+                            uploadController.subject == null ||
+                            uploadController.type == null ||
+                            professorController.text.isEmpty ||
+                            batchController.text.isEmpty ||
+                            creditsController.text.isEmpty ||
+                            pdfUrlController.text.isEmpty) {
+                          Get.snackbar("Error", "Please provide all fields");
+                          return;
+                        }
+                        bool isSuccess = await FirestoreService.upload(
+                          uploadController.branch!.trim(),
+                          uploadController.semester!.trim(),
+                          uploadController.subject!.trim(),
+                          uploadController.type!.trim(),
+                          professorController.text.trim(),
+                          batchController.text.trim(),
+                          creditsController.text.trim(),
+                          pdfUrlController.text.trim(),
+                        );
+                        if (isSuccess) {
+                          Get.snackbar("Success", "Doc uplaoded successfully");
+                        }
+                        setState(() {
+                          isLoading = false;
+                        });
+                        uploadController.setDefault();
+                        professorController.text = "";
+                        batchController.text = "";
+                        creditsController.text = "";
+                        pdfUrlController.text = "";
+                        Get.offAll(() => const UploadScreen());
+                      })
             ],
           ),
         ),
