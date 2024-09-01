@@ -14,7 +14,9 @@ class FirestoreService {
         if (doc['subject'] == subject &&
             doc['department'] == department &&
             doc['semester'] == semester &&
-            doc['category'] == category) {
+            doc['category'] == category
+           
+            ) {
           pdfs.add(
             Pdf(
                 batch: doc['batch'],
