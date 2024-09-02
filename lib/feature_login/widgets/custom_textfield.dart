@@ -27,11 +27,13 @@ class _CustomTextfieldState extends State<CustomTextfield> {
         obscureText: widget.toHide,
         decoration: InputDecoration(
           hintText: widget.text,
+        
           suffixIcon: Icon(widget.iconData),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(11),
           ),
         ),
+        keyboardType: TextInputType.visiblePassword,
       ),
     );
   }

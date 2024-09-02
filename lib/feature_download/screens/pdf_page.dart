@@ -16,11 +16,13 @@ class PdfPage extends StatefulWidget {
       required this.department,
       required this.semester,
       required this.category,
-      required this.subject});
+      required this.subject,
+       });
   final String subject;
   final String department;
   final String semester;
   final String category;
+  
 
   @override
   State<PdfPage> createState() => _PdfPageState();
@@ -29,7 +31,7 @@ class PdfPage extends StatefulWidget {
 class _PdfPageState extends State<PdfPage> {
   List<Pdf> pdfs = [];
   bool isLoading = false;
-
+  
   @override
   void initState() {
     getPdfs();
@@ -78,7 +80,25 @@ class _PdfPageState extends State<PdfPage> {
                 color: Colors.teal,
               ))
             : pdfs.isEmpty
-                ? Center(child: Lottie.asset(AppAssets.nopdf))
+                ? Center(child: Column(
+                  children: [
+                    
+                    Lottie.asset(AppAssets.nopdf,
+                    height: MediaQuery.of(context).size.height*0.6,
+                    width:MediaQuery.of(context).size.width*0.6, 
+                    ),
+                    const SizedBox(height:10),
+                    Text("No Pdfs found",
+                    style:GoogleFonts.audiowide(
+                      textStyle: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                      ),
+                    ),
+                    )
+                  ],
+                ))
                 : kIsWeb
                     ? ResponsiveGridList(
                         minItemWidth: 330,
@@ -120,10 +140,12 @@ class _PdfPageState extends State<PdfPage> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            // Row(
-                                            //   mainAxisAlignment:
-                                            //       MainAxisAlignment.start,
-                                            //   children: [
+                                            Text(
+                                              pdfFile.credits,
+                                              style: const TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                              ),
                                             Text(
                                               pdfFile.department,
                                               style: const TextStyle(
@@ -250,10 +272,17 @@ class _PdfPageState extends State<PdfPage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
+                                        Text(
+                                              pdfFile.credits,
+                                              style: const TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                              ),
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           children: [
+                                            
                                             Text(
                                               pdfFile.department,
                                               style: const TextStyle(

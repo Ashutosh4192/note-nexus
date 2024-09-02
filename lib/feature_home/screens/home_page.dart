@@ -177,6 +177,18 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(
                         height: 20,
                       ),
+                       Text('Enter Details',
+                       style: GoogleFonts.audiowide(
+                            textStyle: const TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                         ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Obx(
                         () => CustomDropdown(
                           items: Variables.departmentList,

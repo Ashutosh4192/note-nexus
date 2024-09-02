@@ -109,7 +109,7 @@ class _UploadScreenState extends State<UploadScreen> {
               ),
               CustomTextfield(
                 controller: creditsController,
-                text: "Credits",
+                text: "Pdf File Name",
               ),
               CustomTextfield(
                 controller: pdfUrlController,
